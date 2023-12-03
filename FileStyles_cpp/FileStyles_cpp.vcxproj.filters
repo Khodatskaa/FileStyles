@@ -4,10 +4,30 @@
     <Filter Include="Main">
       <UniqueIdentifier>{d755b9a9-20d4-4c92-80a4-9f646e7775ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FileWork">
+      <UniqueIdentifier>{72e8bc32-111a-4749-bb3f-384d4d14e15b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{84e8c12a-c56e-4005-85db-24a4dea45cac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="FileWork.cpp">
+      <Filter>FileWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Employees.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FileWork.h">
+      <Filter>FileWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Employees.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
