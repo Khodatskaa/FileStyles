@@ -25,7 +25,7 @@ void FileWork<Employee>::writeToFile(const Employee* data, int size, const std::
     }
 
     file.close();
-    std::cout << "Data written to file successfully.\n";
+    std::cout << "Data written to file successfully\n";
 }
 
 Employee* FileWork<Employee>::readFromFile(int& size, const std::string& filename) {
