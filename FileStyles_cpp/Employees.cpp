@@ -19,26 +19,50 @@ void EmployeesSystem::addEmployee()
 	}
 }
 
-void EmployeesSystem::editEmployee()
-{
-	string name;
-	cout << "Enter name of employee to edit: ";
-	cin >> name;
-	for (int i = 0; i < numEmployees; i++)
-	{
-		if (employees[i].name == name)
-		{
-			cout << "Enter new name: ";
-			cin >> employees[i].name;
-			cout << "Enter new surname: ";
-			cin >> employees[i].surname;
-			cout << "Enter new age: ";
-			cin >> employees[i].age;
+void EmployeesSystem::editEmployee() {
+	std::string name;
+	std::cout << "Enter name of employee to edit: ";
+	std::cin >> name;
+
+	for (int i = 0; i < numEmployees; i++) {
+		if (employees[i].name == name) {
+			std::cout << "Employee found. What do you want to edit?\n";
+			std::cout << "1. Edit Name\n";
+			std::cout << "2. Edit Surname\n";
+			std::cout << "3. Edit Age\n";
+			std::cout << "Enter your choice: ";
+
+			int choice;
+			std::cin >> choice;
+
+			switch (choice) {
+			case 1:
+				std::cout << "Enter new name: ";
+				std::cin >> employees[i].name;
+				std::cout << "Name updated successfully.\n";
+				break;
+			case 2:
+				std::cout << "Enter new surname: ";
+				std::cin >> employees[i].surname;
+				std::cout << "Surname updated successfully.\n";
+				break;
+			case 3:
+				std::cout << "Enter new age: ";
+				std::cin >> employees[i].age;
+				std::cout << "Age updated successfully.\n";
+				break;
+			default:
+				std::cout << "Invalid choice.\n";
+				break;
+			}
+
 			return;
 		}
 	}
-	cout << "Employee not found" << endl;
+
+	std::cout << "Employee not found.\n";
 }
+
 
 void EmployeesSystem::deleteEmployee()
 {
