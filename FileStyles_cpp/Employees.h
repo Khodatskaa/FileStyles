@@ -16,12 +16,16 @@ struct Employee
 struct EmployeesSystem 
 {
 public:
+    EmployeesSystem();  
+    ~EmployeesSystem();
+
     void addEmployee();
     void editEmployee();
     void deleteEmployee();
     void searchByName();
     void displayByAgeOrSurname();
     void saveToFile();
+    void displayEmployees() const; 
     void loadFromFile();
 
 private:

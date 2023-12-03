@@ -1,52 +1,51 @@
 #include "FileWork.h"
+#include "Employees.h"  
 #include <iostream>
 #include <fstream>
 
-template<typename T>
-void FileWork<T>::writeToFile(const T* data, int size, const std::string& filename) {
-    std::ofstream file(filename, std::ios::out | std::ios::binary);
 
-    if (file.is_open()) {
-        file.write(reinterpret_cast<const char*>(data), size * sizeof(T));
-        file.close();
-        std::cout << "Data written to file successfully\n";
+#ifndef MAX_DATA_SIZE
+#define MAX_DATA_SIZE 20
+#endif
+
+void FileWork<Employee>::writeToFile(const Employee* data, int size, const std::string& filename) {
+    if (!data) {
+        std::cout << "Error: Null pointer passed to writeToFile\n";
+        return;
     }
-    else {
-        std::cout << "Error opening file for writing\n";
+
+    std::ofstream file(filename);
+    if (!file.is_open()) {
+        std::cout << "Error: Unable to open file for writing\n";
+        return;
     }
+
+    for (int i = 0; i < size; ++i) {
+        file << data[i].name << ' ' << data[i].surname << ' ' << data[i].age << '\n';
+    }
+
+    file.close();
+    std::cout << "Data written to file successfully.\n";
 }
 
-template<typename T>
-T* FileWork<T>::readFromFile(int& size, const std::string& filename) {
-    std::ifstream file(filename, std::ios::in | std::ios::binary);
-
-    if (file.is_open()) {
-        T* data = nullptr;
-        T item;
-
-        while (file.read(reinterpret_cast<char*>(&item), sizeof(T))) {
-            T* newData = new T[size + 1];
-
-            for (int i = 0; i < size; ++i) {
-                newData[i] = data[i];
-            }
-
-            newData[size] = item;
-
-            delete[] data;
-            data = newData;
-
-            ++size;
-        }
-
-        file.close();
-        std::cout << "Data read from file successfully.\n";
-        return data;
-    }
-    else {
-        std::cerr << "Error opening file for reading.\n";
+Employee* FileWork<Employee>::readFromFile(int& size, const std::string& filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cout << "Error: Unable to open file for reading\n";
         return nullptr;
     }
+
+    Employee* data = new Employee[MAX_DATA_SIZE];
+    size = 0;
+
+    while (size < MAX_DATA_SIZE && file >> data[size].name >> data[size].surname >> data[size].age) {
+        ++size;
+    }
+
+    file.close();
+    std::cout << "Data read from file successfully\n";
+
+    return data;
 }
 
-template struct FileWork<int>;
+template class FileWork<Employee>;
