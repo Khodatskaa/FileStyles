@@ -3,13 +3,9 @@
 #include <iostream>
 #include <fstream>
 
-EmployeesSystem::EmployeesSystem() : numEmployees(0) {
-    // Initialize other members if needed
-}
+EmployeesSystem::EmployeesSystem() : numEmployees(0) {}
 
-EmployeesSystem::~EmployeesSystem() {
-    // Cleanup resources, e.g., delete[] employees;
-}
+EmployeesSystem::~EmployeesSystem() {}
 
 void EmployeesSystem::addEmployee() {
     if (numEmployees < MAX_EMPLOYEES) {
@@ -81,7 +77,7 @@ void EmployeesSystem::deleteEmployee() {
                 employees[j] = employees[j + 1];
             }
             numEmployees--;
-            cout << "Employee deleted successfully.\n";
+            cout << "Employee deleted successfully\n";
             return;
         }
     }
@@ -112,7 +108,6 @@ void EmployeesSystem::displayByAgeOrSurname() {
     cin >> choice;
 
     if (choice == 1) {
-        // Sort by age
         for (int i = 0; i < numEmployees; i++) {
             for (int j = 0; j < numEmployees - 1; j++) {
                 if (employees[j].age > employees[j + 1].age) {
@@ -124,7 +119,6 @@ void EmployeesSystem::displayByAgeOrSurname() {
         }
     }
     else if (choice == 2) {
-        // Sort by surname
         for (int i = 0; i < numEmployees; i++) {
             for (int j = 0; j < numEmployees - 1; j++) {
                 if (employees[j].surname > employees[j + 1].surname) {
@@ -152,12 +146,12 @@ void EmployeesSystem::saveToFile() {
 
     FileWork<Employee>::writeToFile(employees, numEmployees, filename);
 
-    cout << "Data saved to file.\n";
+    cout << "Data saved to file\n";
 }
 
 void EmployeesSystem::displayEmployees() const {
     if (numEmployees == 0) {
-        cout << "No employees to display.\n";
+        cout << "No employees to display\n";
         return;
     }
 
@@ -179,5 +173,5 @@ void EmployeesSystem::loadFromFile() {
 
     displayEmployees();
 
-    cout << "Data loaded from file.\n";
+    cout << "Data loaded from file\n";
 }
